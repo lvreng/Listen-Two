@@ -1,0 +1,82 @@
+{
+  "name": "listen-two",
+  "version": "1.0.0",
+  "description": "Listen Two - A beautiful Electron music player with Vue 3.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:win:dir": "electron-builder --win --dir",
+    "dist": "electron-builder --publish=never"
+  },
+  "keywords": ["music", "player", "electron"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.4.21",
+    "music-metadata": "^7.14.0"
+  },
+  "devDependencies": {
+    "electron": "^29.1.4",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.listentwo.app",
+    "productName": "Listen Two",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "logo.png",
+      "floating-panel.js",
+      "meteor-effect.js",
+      "play-effects.js",
+      "rhythm-effect.js",
+      "ripple-effect.js",
+      "node_modules/**/*",
+      "!node_modules/**/*.{md,ts,map,log}",
+      "!node_modules/.cache",
+      "!node_modules/**/test",
+      "!node_modules/**/tests",
+      "!node_modules/**/*.test.js",
+      "!node_modules/**/*.spec.js",
+      "!node_modules/**/README*",
+      "!node_modules/**/CHANGELOG*",
+      "!node_modules/**/LICENSE*",
+      "!node_modules/**/LICENCE*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "logo.png",
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Listen Two"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.${ext}"
+    },
+    "compression": "maximum",
+    "asar": true,
+    "asarUnpack": []
+  }
+}
